@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" author="Andrew McGuiness">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" >
+    <title>PC</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="icon" type=“image/x-icon” href="images/favicon.ico"/>
+  </head>
+  <body>
+    <h1>Tool for creating programs</h1> <br><br>
+    <p style= "text-align: center;">Turing Machine will halt when it arrives on a blank instruction for its State+Read value</p>
+
+
+
+    <div class = "createProgram">
+        <form id="name" class="centredForm">
+            <input  class="centredForm" type="text" id="programName" maxlength="32" size="64" placeholder = "First enter a descriptive name for this program and press Enter to submit" required/>
+            <input id="submitName" type="submit" value="Submit" style="display:none">
+        </form>
+        
+        <table id = "programTable" >
+            <tr>
+                <th></th><th >Read "0"</th><th >Read "1"</th>
+            </tr>
+            <form id="programForm">
+                <div id="programSubmit"></div>
+            </form>           
+        </table><br><br>
+        <div>
+            <input id="newRow" type="button" value="Add new row" onclick="newRow();">
+        </div>
+    </div>
+    <script src="./scripts/programForm.js" type="text/javascript"></script>
+  </body>
+  <footer>
+    <br>
+    <p style= "text-align:right"><a href="index.html">Turing Machine</a>.</p>
+  </footer>

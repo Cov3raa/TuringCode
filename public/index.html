@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" author="Andrew McGuiness">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" >
+    <title>TM</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="icon" type=“image/x-icon” href="images/favicon.ico"/>
+  </head>
+  <body>
+    <div id = "title"><h1>An implementation of a basic Turing Machine in Javascript</h1> <br><br></div>
+    <main>
+      <div class="top-container">
+        <div class="flex-containerL">
+          <h3 id="halt"></h3>
+          <div id="message">
+            <h4>Input string for the Copy program must be a string of 1s; some programs expect eg. 11101111</h4>
+          </div>
+          <div class="Parent">
+            <div class = "child1" style="text-align:right" id="notifyMessage"></div>
+            <div class = "child2" style="text-align:left" id="displayInput"></div>
+          </div><br>
+          <div class="Parent">
+            <div class = "child1" style="text-align:right" id="decimalInputMessage"> </div>
+            <div class = "child2" style="text-align:left" id="decimalInputDisplay"> </div>
+          </div><br>
+          <div id="theForm">
+            <form id="inputForm">
+              <label for="inputString">Input string:</label>
+              <input type="text"  id="inputString" name="inputString" placeholder = "111111111111101111111111">
+              <input id="submit"type="submit" value="Submit" style="display:none">
+            </form>
+          </div>
+          <div class="Parent">
+            <div class = "child1" style="text-align:right" id="outputMessage"></div>
+            <div class = "child2" style="text-align:left" id="output"></div>
+          </div><br>
+          <div class="Parent">
+            <div class = "child1" style="text-align:right" id="decimalOutputMessage"></div>
+            <div class = "child2" style="text-align:left" id="decimalOutput"></div>
+          </div>
+          <br>
+          <div id="outer">
+            <div id = "boutons" class="inner"></div>
+            <div id = "stepButton" class="inner"></div>
+          </div>
+          <div><p></p></div>
+          <table style="width:100%">
+            <colgroup>
+              <col span="9" style="background-color: pink">
+              <col span="1" style="width:80px">
+              <col span="9" style="background-color: pink">
+            </colgroup>
+            <tr>
+              <td style = "opacity: 0.2" id="before9">Emil</td>
+              <td style = "opacity: 0.3"  id="before8">Emil</td>
+              <td style = "opacity: 0.4"  id="beforebeforebeforebeforebeforebeforebefore">Emil</td>
+              <td style = "opacity: 0.5"  id="beforebeforebeforebeforebeforebefore">Emil</td>
+              <td style = "opacity: 0.6"  id="beforebeforebeforebeforebefore">Emil</td>
+              <td style = "opacity: 0.7"  id="beforebeforebeforebefore">Emil</td>
+              <td style = "opacity: 0.8"  id="beforebeforebefore">Emil</td>
+              <td style = "opacity: 0.9"  id="beforebefore">Emil</td>
+              <td style = "opacity: 0.95"  id="before">Tobias</td>
+              <td style = "opacity: 1.0"  id="current" style="font-size: 32px">Linus</td>
+              <td style = "opacity: 0.95"  id="after">Linus</td>
+              <td style = "opacity: 0.9"  style = "opacity: 0.2"  id="afterafter">Linus</td>
+              <td style = "opacity: 0.8"  id="afterafterafter">Linus</td>
+              <td style = "opacity: 0.7"  id="afterafterafterafter">Linus</td>
+              <td style = "opacity: 0.6"  id="afterafterafterafterafter">Linus</td>
+              <td style = "opacity: 0.5"  id="afterafterafterafterafterafter">Linus</td>
+              <td style = "opacity: 0.4"  id="afterafterafterafterafterafterafter">Linus</td>
+              <td style = "opacity: 0.3"  id="after8">Linus</td>
+              <td style = "opacity: 0.2"  id="after9">Linus</td>
+            </tr>
+          </table><br>
+          <div class="Parent">
+            <div class = "child1">            
+              <div style="text-align:right" id="stepNum"></div>
+              <div  style="text-align:right" id="position"></div>
+              <div  style="text-align:right" id="state"></div>
+              <div  style="text-align:right" id="read"></div>
+            </div>
+            <div class = "child2">            
+              <div style="text-align:left" id="stepNum2"></div>
+              <div  style="text-align:left" id="position2"></div>
+              <div  style="text-align:left" id="state2"></div> 
+              <div  style="text-align:left" id="read2"></div><br>
+            </div>
+          </div><br>
+          <div style="text-align:left" id="forCurrentState"></div><br>
+          <div class="Parent" >
+            <div class = "child1">
+              <div  style="text-align:right" id="nextWrite"></div>
+              <div  style="text-align:right" id="nextMove"></div>
+              <div  style="text-align:right" id="nextState"></div>
+            </div>
+            <div class = "child2">            
+              <div  style="text-align:left" id="nextWrite2"></div>
+              <div  style="text-align:left" id="nextMove2"></div>
+              <div  style="text-align:left" id="nextState2"></div>
+            </div>
+          </div><br>
+        </div>
+
+        <div class="flex-containerR">
+          <div class="programHeading">
+            <div id = "currentProgram"></div><br>
+            <div id = "proglist"></div>
+            <input type="button" id="loadProgramButton" style="visibility: visible;" value="(...or load a program from a .json file)" onclick="document.getElementById('fileLoad').click();" />
+            <input type="file" id="fileLoad" style="visibility: hidden;" >
+            <div id = clearProgs></div>
+            <div id = "instructions1" style = "font-size:13px"></div>
+            <div id = "instructions2" style = "font-size:13px"></div><br>
+            <div id="tableOfStates"></div>
+                  <!-- hidden form to download text -->
+            <form id="saveText" type="hidden"  name="saveText" onsubmit="saveProgram(this.value)">
+                <br>
+            </form>
+          </div>
+        </div>
+      </div> 
+
+    </main> 
+    <script src="./scripts/TM.js" type="text/javascript"></script>
+  </body>
+  <footer>
+    <br>
+    <p style= "text-align:right"><a href="ProgramCreator.html" >Program Creator</a>.</p>
+  </footer>
+</html>

@@ -1,0 +1,111 @@
+h1 {text-align: center;}
+
+.top-container {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+.flex-containerL {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  }
+.flex-containerR {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;     
+    width: 35%;
+  }
+.programHeading {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;     
+  width: 100%;
+}
+.Parent {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    justify-content: space-between;
+}
+
+.child1 {
+    width: 60%;
+}
+.child2 {
+  width: 30%;
+  word-break: break-all;
+}
+
+.wrap {
+  word-break: break-all;
+}
+#outer
+{
+    width:50%;
+    text-align: center;
+}
+.inner
+{
+    display: inline-block;
+}
+
+td {
+  font-size: 18px; 
+  border-collapse: collapse;
+  padding: 14px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+th {
+  font-size: 18px; 
+  border-collapse: collapse;
+  padding: 14px;
+  text-align: center;
+}
+
+.stateTable {
+  font-size: 18px; 
+  font-weight:bold;
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 15px;
+  text-align: center;
+}
+
+.createProgram {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center; 
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 80%;
+  /* border: 1px solid black; */
+}
+
+.centredForm {
+  margin: 0 auto;
+  width: 70%;
+  margin-left : 11.5%;
+  text-align : center;
+}
+.programName {
+  margin: 0 auto;
+  width: 70%;
+  margin-left : 15%;
+  text-align : center;
+}
+
+
