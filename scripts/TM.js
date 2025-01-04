@@ -81,6 +81,7 @@ function showTableOfStates(currentProgramName) {
     document.getElementById("loadProgramButton").style = "visibility: hidden";
     document.getElementById("instructions1").innerHTML = 'Numbers show: value to <i>write</i> in this cell; next <i>move</i>; next <i>state</i>;';
     document.getElementById("instructions2").innerHTML = 'eg. "0 -1 1" = write <i>0</i> in this cell; move <i>one left</i>; change to <i>State 1</i>';
+    document.getElementById("instructions3").innerHTML = 'First move before starting program is always one step R, ie. onto a 1.';
     document.getElementById("currentProgram").innerHTML = `<h2>` + currentProgramName + `</h2>`;
     var currentProgram = localStorage.getItem(currentProgramName);
     currentProgram = JSON.parse(localStorage.getItem(currentProgramName));
@@ -107,7 +108,7 @@ function displayProgram(currentProgramName, currentProgram) {
     document.getElementById("proglist").innerHTML = "";
     document.getElementById("loadProgramButton").style = "visibility: hidden";
     document.getElementById("instructions1").innerHTML = 'Numbers show: value to <i>write</i> in this cell; next <i>move</i>; next <i>state</i>;';
-    document.getElementById("instructions2").innerHTML = 'First move beforeeg. "0 -1 1" = write <i>0</i> in this cell; move <i>one left</i>; change to <i>State 1</i>';
+    document.getElementById("instructions2").innerHTML = 'eg. "0 -1 1" = write <i>0</i> in this cell; move <i>one left</i>; change to <i>State 1</i>';
     document.getElementById("instructions3").innerHTML = 'First move before starting program is always one step R, ie. onto a 1';
     document.getElementById("currentProgram").innerHTML = `<h2>` + currentProgramName + `</h2>`;
     setInputValue("saveText", currentProgram);
