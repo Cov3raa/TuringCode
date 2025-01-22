@@ -41,7 +41,7 @@ const add =[[["0","1","1"],["1","1","0"]],[["0","-1","2"],["1","1","1"]],[["",""
 
 localStorage.removeItem("Programs");
 localStorage.setItem("Copy",JSON.stringify(copy));
-localStorage.setItem("Add",JSON.stringify(add));
+localStorage.setItem("Add2",JSON.stringify(add));
 
     //set up sessionStorage with list of programs in localStorage
 const progrsInLocalStorage = [];
