@@ -141,6 +141,27 @@ function updateStatus(program, state) {
 }
 
 function updateDisplay () {
+    //position labels 
+    var headLabel = head.position - LEN/2;
+    document.getElementById("b0").innerHTML = headLabel;
+    document.getElementById("b1").innerHTML = headLabel-1;
+    document.getElementById("b2").innerHTML = headLabel-2;
+    document.getElementById("b3").innerHTML = headLabel-3;
+    document.getElementById("b4").innerHTML = headLabel-4;
+    document.getElementById("b5").innerHTML = headLabel-5;
+    document.getElementById("b6").innerHTML = headLabel-6;
+    document.getElementById("b7").innerHTML = headLabel-7;
+    document.getElementById("b8").innerHTML = headLabel-8;
+    document.getElementById("b9").innerHTML = headLabel-9;
+    document.getElementById("a1").innerHTML = headLabel+1;
+    document.getElementById("a2").innerHTML = headLabel+2;
+    document.getElementById("a3").innerHTML = headLabel+3;
+    document.getElementById("a4").innerHTML = headLabel+4;
+    document.getElementById("a5").innerHTML = headLabel+5;
+    document.getElementById("a6").innerHTML = headLabel+6;
+    document.getElementById("a7").innerHTML = headLabel+7;
+    document.getElementById("a8").innerHTML = headLabel+8;
+    document.getElementById("a9").innerHTML = headLabel+9;
     //tape display
     document.getElementById("current").innerHTML = tape[head.position];
     document.getElementById("before").innerHTML = tape[head.position-1];
@@ -179,7 +200,14 @@ function addStringsOfOnes (string){
         } 
         numbers.push(decimalNumber);
     }
-    return numbers;
+    var displayString = "";
+    for (let i = 0; i < numbers.length; i++) {
+        if (i>0) {
+            displayString += ", ";
+        }
+        displayString += numbers[i];
+    }
+    return displayString;
 }
 //get the user's text input that the program starts with
 // Get the input field
@@ -202,7 +230,8 @@ input.addEventListener("keypress", function(event) {
             decimalInput = addStringsOfOnes (userInputString);
             document.getElementById("decimalInputDisplay").innerHTML = decimalInput;
             document.getElementById("theForm").innerHTML = "";
-            document.getElementById("boutons").innerHTML = '<input id="start" type="button" value="Run" onclick="runProgram();" />'
+            document.getElementById("boutons").innerHTML = '<input id="start" type="button" value="Run with this interval:" onclick="runProgram();" />'
+            document.getElementById("runInterval").innerHTML = '<input id="interval" type="number" value="0" min="0" step="75" style="width: 4em;" onclick="setDelay();" />'
             document.getElementById("stepButton").innerHTML = '<input id="step" type="button" value="Step" onclick="stepProgram();" />'
             for (let i=0;i<userInputString.length;i++){
                 tape[head.position + 1 + i] = userInputString.charAt(i);
@@ -213,7 +242,10 @@ input.addEventListener("keypress", function(event) {
     }
 });
 //RUN
-let repeatDelay = 70;
+let repeatDelay = 0;
+function setDelay() {
+    repeatDelay = document.getElementById("interval").value;
+}
 function runProgram(){
     document.getElementById("boutons").innerHTML = '<input id="reload" type="button" value="Reload" onclick="location.reload();" />';
     document.getElementById("step").disabled = true;
