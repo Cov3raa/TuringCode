@@ -29,7 +29,7 @@ const copy = [
     //2: Keeps moving L until it sees a 0, moves L in state 3
     [[0,-1,3],[1,-1,2]],
     //3: Moves past all the newly written 1s to the L; when it finds a 0 it writes a 1 moves R in state 4
-    [[1,1,4],[1,1,3]],
+    [[1,1,4],[1,-1,3]],
     //4: Moves past all the newly written 1s to the R; when it finds a 0 it moves R in state 5
     [[0,1,5],[1,1,4]],
     //5: If it hits a 0 in state 5, it goes to state 6; if it sees a 1, it goes to state 0
@@ -37,11 +37,11 @@ const copy = [
     //6: If it hits a 0 in state 6, it goes to state 1 (and halts); if it sees a 1, it goes to state 0
     [[0,-1,1],[1,1,0]]
 ]
-const add =[[["0","1","1"],["1","1","0"]],[["0","-1","2"],["1","1","1"]],[["","",""],["0","-1","3"]],[["1","1","4"],["1","-1","3"]],[["0","-1","5"],["1","1","4"]],[["0","1","4"],["0","-1","6"]],[["0","-1","7"],["1","-1","6"]],[["1","1","8"],["1","-1","7"]],[["0","1","9"],["1","1","8"]],[["","",""],["1","1","4"]]]
+const add2 =[[["0","1","1"],["1","1","0"]],[["0","-1","2"],["1","1","1"]],[["","",""],["0","-1","3"]],[["1","1","4"],["1","-1","3"]],[["0","-1","5"],["1","1","4"]],[["0","1","4"],["0","-1","6"]],[["0","-1","7"],["1","-1","6"]],[["1","1","8"],["1","-1","7"]],[["0","1","9"],["1","1","8"]],[["","",""],["1","1","4"]]]
 
 localStorage.removeItem("Programs");
 localStorage.setItem("Copy",JSON.stringify(copy));
-localStorage.setItem("Add2",JSON.stringify(add));
+localStorage.setItem("Add2",JSON.stringify(add2));
 
     //set up sessionStorage with list of programs in localStorage
 const progrsInLocalStorage = [];
@@ -213,13 +213,17 @@ input.addEventListener("keypress", function(event) {
     }
 });
 //RUN
+let repeatDelay = 70;
 function runProgram(){
     document.getElementById("boutons").innerHTML = '<input id="reload" type="button" value="Reload" onclick="location.reload();" />';
     document.getElementById("step").disabled = true;
     var stopping = "";
-    while (stopping != "halt") {
-        stopping = stepProgram();
-    }
+    setTimeout(function repeat() {
+        if (stopping !== "halt") {
+            stopping = stepProgram();
+            setTimeout(repeat, repeatDelay);
+        }
+    }, repeatDelay);
     return;
 }
 function stepProgram(){
@@ -237,13 +241,14 @@ function stepProgram(){
         updateDisplay();
     }
     stepNum = stepNum + 1;
+    // console.log(activeProgram[state],activeProgram[state][tape[head.position]]);
     if (activeProgram[state][tape[head.position]][2] > activeProgram.length - 1) {
         var haltMessage = "HALTING because State " + activeProgram[state][tape[head.position]][2] + " does not exist";
         document.getElementById("halt").innerHTML = haltMessage;
         document.getElementById("step").disabled = true;
         return "halt";
     }
-    if (activeProgram[state][tape[head.position]][2] == "" && activeProgram[state][tape[head.position]][1] == "" ) {
+    if (activeProgram[state][tape[head.position]][2] === "" && activeProgram[state][tape[head.position]][1] == "" ) {
         updateStatus(activeProgram, state);
         updateDisplay();    
         document.getElementById("halt").innerHTML = "HALTING because no next State/Move";
@@ -264,6 +269,7 @@ function stepProgram(){
         document.getElementById("decimalOutput").innerHTML = decimalOutput;
             return "halt";
     }
+
     //set vars
     read = tape[head.position];
     write = activeProgram[state][read][0];
