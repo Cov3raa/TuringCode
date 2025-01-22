@@ -140,28 +140,37 @@ function updateStatus(program, state) {
     document.getElementById("nextState2").innerHTML = program[state][tape[head.position]][2];
 }
 
+function calculateLabel(addition){
+    var headLabel = head.position - LEN/2;
+    if ((headLabel + addition) % 5 == 0) {
+        return headLabel + addition;
+    } else {
+        return " ";
+    }
+}
+
 function updateDisplay () {
     //position labels 
-    var headLabel = head.position - LEN/2;
-    document.getElementById("b0").innerHTML = headLabel;
-    document.getElementById("b1").innerHTML = headLabel-1;
-    document.getElementById("b2").innerHTML = headLabel-2;
-    document.getElementById("b3").innerHTML = headLabel-3;
-    document.getElementById("b4").innerHTML = headLabel-4;
-    document.getElementById("b5").innerHTML = headLabel-5;
-    document.getElementById("b6").innerHTML = headLabel-6;
-    document.getElementById("b7").innerHTML = headLabel-7;
-    document.getElementById("b8").innerHTML = headLabel-8;
-    document.getElementById("b9").innerHTML = headLabel-9;
-    document.getElementById("a1").innerHTML = headLabel+1;
-    document.getElementById("a2").innerHTML = headLabel+2;
-    document.getElementById("a3").innerHTML = headLabel+3;
-    document.getElementById("a4").innerHTML = headLabel+4;
-    document.getElementById("a5").innerHTML = headLabel+5;
-    document.getElementById("a6").innerHTML = headLabel+6;
-    document.getElementById("a7").innerHTML = headLabel+7;
-    document.getElementById("a8").innerHTML = headLabel+8;
-    document.getElementById("a9").innerHTML = headLabel+9;
+    
+    document.getElementById("b0").innerHTML = calculateLabel(0);
+    document.getElementById("b1").innerHTML = calculateLabel(-1);
+    document.getElementById("b2").innerHTML = calculateLabel(-2);
+    document.getElementById("b3").innerHTML = calculateLabel(0-3);
+    document.getElementById("b4").innerHTML = calculateLabel(-4);
+    document.getElementById("b5").innerHTML = calculateLabel(-5);
+    document.getElementById("b6").innerHTML = calculateLabel(-6);
+    document.getElementById("b7").innerHTML = calculateLabel(-7);
+    document.getElementById("b8").innerHTML = calculateLabel(-8);
+    document.getElementById("b9").innerHTML = calculateLabel(-9);
+    document.getElementById("a1").innerHTML = calculateLabel(1);
+    document.getElementById("a2").innerHTML = calculateLabel(2);
+    document.getElementById("a3").innerHTML = calculateLabel(3);
+    document.getElementById("a4").innerHTML = calculateLabel(4);
+    document.getElementById("a5").innerHTML = calculateLabel(5);
+    document.getElementById("a6").innerHTML = calculateLabel(6);
+    document.getElementById("a7").innerHTML = calculateLabel(7);
+    document.getElementById("a8").innerHTML = calculateLabel(8);
+    document.getElementById("a9").innerHTML = calculateLabel(9);
     //tape display
     document.getElementById("current").innerHTML = tape[head.position];
     document.getElementById("before").innerHTML = tape[head.position-1];
@@ -231,7 +240,7 @@ input.addEventListener("keypress", function(event) {
             document.getElementById("decimalInputDisplay").innerHTML = decimalInput;
             document.getElementById("theForm").innerHTML = "";
             document.getElementById("boutons").innerHTML = '<input id="start" type="button" value="Run with this interval:" onclick="runProgram();" />'
-            document.getElementById("runInterval").innerHTML = '<input id="interval" type="number" value="0" min="0" step="75" style="width: 4em;" onclick="setDelay();" />'
+            document.getElementById("runInterval").innerHTML = '<input id="interval" type="number" value="0" min="0" step="75" style="width: 3em;" onclick="setDelay();" />'
             document.getElementById("stepButton").innerHTML = '<input id="step" type="button" value="Step" onclick="stepProgram();" />'
             for (let i=0;i<userInputString.length;i++){
                 tape[head.position + 1 + i] = userInputString.charAt(i);

@@ -60,6 +60,13 @@ h1 {text-align: center;}
     display: inline-block;
 }
 
+td.tapelabel {
+  font-size: 14px;
+  text-align: center;
+  padding: 0px;
+  border: 1px solid white;
+}
+
 td {
   font-size: 18px; 
   border-collapse: collapse;
